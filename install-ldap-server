@@ -3,5 +3,6 @@
 #Team 1: Austin Kelly, Zoey Koza, Randy Clark, and Kasey Cottier
 
 yum install openldap-servers openldap-clients -y
-ldapmodify -x -D "cn=Manager,dc=example,dc=com" -w $6$3361s57Tar2KDos8$bcK1QKAFUJEsyGoIp83FEUNLQhrQz4dna39NubdfbysqMpGUORELT4/oo014mu6c2Hth6WipUPToq8aO1zhwB0 -H ldap:// -f update1.ldif
+cd /etc/openldap/slapd.d/cn=config
+ldapmodify -Y EXTERNAL -H ldapi:/// -f /root/update1.ldif 
 systemctl start slapd.service
