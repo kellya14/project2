@@ -1,4 +1,4 @@
-dn: olcDatabase={2}hbd,cn=config
+dn: olcDatabase={2}hdb,cn=config
 changetype: modify
 replace: olcSuffix
 olcSuffix: dc=team1,dc=nku,dc=edu
