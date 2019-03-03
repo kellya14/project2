@@ -2,7 +2,7 @@
 #CIT470 Project 2 LDAP Installation
 #Team 1: Austin Kelly, Zoey Koza, Randy Clark, and Kasey Cottier
 
-yum install openldap-servers openldap-clients
+yum install openldap-servers openldap-clients -y
 cd /etc/openldap/slapd.d/cn=config
 ldapmodify -x -D "cn=Manager,dc=example,dc=com" -w $6$3361s57Tar2KDos8$bcK1QKAFUJEsyGoIp83FEUNLQhrQz4dna39NubdfbysqMpGUORELT4/oo014mu6c2Hth6WipUPToq8aO1zhwB0 -H ldap:// -f update1.ldif
 systemctl start slapd.service
