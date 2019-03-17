@@ -1,0 +1,50 @@
+# CIT 470 Team 1 LDIF File
+
+# Root node
+dn: dc=team1,dc=nku,dc=edu
+objectclass: organization
+objectclass: dcObject
+o: team1.nku.edu
+dc: team1
+
+# Student user branch node
+dn: ou=StudentUsers, dc=team1,dc=nku,dc=edu
+objectclass: organizationalUnit
+ou: StudentUsers
+
+# Test users branch node
+dn: ou=TestUsers, dc=team1,dc=nku,dc=edu
+objectclass: organizationalUnit
+ou: TestUsers
+
+# LDAP Superuser node
+dn: cn=Manager, dc=team1,dc=nku,dc=edu
+objectclass: organizationalRole
+cn: Manager
+
+# StudentUsers leaf nodes
+dn: cn=Austin Kelly, ou=StudentUsers, dc=team1,dc=nku,dc=edu
+objectclass: person
+cn: Austin Kelly
+sn: Kelly
+
+dn: cn=Zoey Koza, ou=StudentUsers, dc=team1,dc=nku,dc=edu
+objectclass: person
+cn: Zoey Koza
+sn: Koza
+
+dn: cn=Randy Clark, ou=StudentUsers, dc=team1,dc=nku,dc=edu
+objectclass: person
+cn: Randy Clark
+sn: Clark
+
+dn: cn=Kasey Cottier, ou=StudentUsers, dc=team1,dc=nku,dc=edu
+objectclass: person
+cn: Kasey Cottier
+sn: Cottier
+
+# TestUsers leaf nodes
+dn: cn=Test User, ou=TestUsers, dc=team1,dc=nku,dc=edu
+objectclass: person
+cn: Test User
+sn: User
