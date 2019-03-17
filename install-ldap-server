@@ -1,6 +1,10 @@
 #!/bin/bash
-#CIT470 Project 2 LDAP Installation
+#CIT470 Project 2 LDAP Installation/Configuration Script
 #Team 1: Austin Kelly, Zoey Koza, Randy Clark, and Kasey Cottier
+#March 17th, 2019        * Lines of Code, excluding comments*
+#If a user requests -h or --help at command line, start small script while logging all output.
+if [ "$1" == "-h" ] || [ "$1" == "--help" ];
+then echo "Usage: `basename $0` [Start the LDAP Install Script by using this command: ./install-ldap-server]" ; exit 0 ; fi | tee -a ldap-install.log
 
 yum install openldap-servers openldap-clients -y
 cd /etc/openldap/slapd.d/cn=config
