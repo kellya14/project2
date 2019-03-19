@@ -10,3 +10,7 @@ yum install openldap-servers openldap-clients -y
 cd /etc/openldap/slapd.d/cn=config
 ldapmodify -Y EXTERNAL -H ldapi:/// -f /root/update1.ldif 
 systemctl start slapd.service
+systemctl enable slapd.service
+ldapadd -x -D "cn=Manager,dc=team1,dc=nku,dc=edu" -W -f /etc/openldap/slapd.d/cn\=config/team1.ldif
+firewall-cmd --zone=public --add-port=389/tcp --permanent
+firewall-cmd --zone=public --add-port=636/tcp --permanent
