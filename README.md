@@ -1,11 +1,12 @@
 #Team 1 README file
-This project includes 3 files: A kickstart file, a LDAP script, and a NFS script.
+This project includes 3 separate files: A Kickstart file(to be used on clients only), a LDAP script, and a NFS script.
 
-The Kickstart file can be booted from our Apache Server from Assignment 1 by using the command: linux ks=
+The Client's Kickstart file can be booted from our Apache Server from Assignment 1 by using the command: linux ks=10.2.7.224/client-ks.cfg
 
 The LDAP script can be run by using the command: ./install-ldap-server
-
 The NFS script can be run by using the command: ./install-nfs-server
+
+Feel free to use -h or -help before running either script if you forget the commands to run the scripts.
 
 dos2unix command:
 cd C:\Users\austi\Desktop\CIT 470\CIT470_Group_project1
