@@ -1,0 +1,11 @@
+#Team 1 (man cit470)
+#Kasey Cottier, Austin Kelly, Randy Clark, Zoey Koza, Chris
+
+README.md
+#General instructions for using the included scripts
+client.ks.cfg
+#Kickstart file for each of our client machines
+install-ldap-server
+#Script to install LDAP onto our server machine
+install-nfs-server
+#Script to install NFS onto our server machine
