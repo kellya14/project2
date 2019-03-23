@@ -43,6 +43,11 @@ objectclass: person
 cn: Kasey Cottier
 sn: Cottier
 
+dn: cn=Chris Pischl, ou=StudentUsers, dc=team1,dc=nku,dc=edu
+objectclass: person
+cn: Chris Pischl
+sn: Pischl
+
 # TestUsers leaf nodes
 dn: cn=Test User, ou=TestUsers, dc=team1,dc=nku,dc=edu
 objectclass: person
