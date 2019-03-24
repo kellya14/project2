@@ -1,6 +1,6 @@
 #!/bin/bash
 #CIT470 Project 2 LDAP Installation/Configuration Script
-#Team 1: Austin Kelly, Zoey Koza, Randy Clark, and Kasey Cottier
+#Team 1: Austin Kelly, Zoey Koza, Randy Clark, Kasey Cottier and Chris Pischl
 #March 17th, 2019        * Lines of Code, excluding comments*
 #If a user requests -h or --help at command line, start small script while logging all output.
 if [ "$1" == "-h" ] || [ "$1" == "--help" ];
