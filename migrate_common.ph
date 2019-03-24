@@ -87,7 +87,7 @@ $DEFAULT_BASE = "dc=team1,dc=nku,dc=com";
 
 # turn this on to support more general object clases
 # such as person.
-$EXTENDED_SCHEMA = 0;
+$EXTENDED_SCHEMA = 1;
 
 #
 # allow environment variables to override predefines
