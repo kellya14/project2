@@ -1,6 +1,6 @@
 #!/bin/bash
 #CIT470 Project 2 NFS Installation Script
-#Team 1: Austin Kelly, Zoey Koza, Randy Clark, and Kasey Cottier
+#Team 1: Austin Kelly, Zoey Koza, Randy Clark, Chris Pischl, and Kasey Cottier
 #March 9th, 2019        *24 Lines of Code, excluding comments*
 #If a user requests -h or --help at command line, start small script while logging all output.
 if [ "$1" == "-h" ] || [ "$1" == "--help" ];
