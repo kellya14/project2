@@ -71,7 +71,7 @@ if ($NETINFOBRIDGE) {
 $DEFAULT_MAIL_DOMAIN = "team1.nku.edu";
 
 # Default base 
-$DEFAULT_BASE = "dc=team1,dc=nku,dc=com";
+$DEFAULT_BASE = "dc=team1,dc=nku,dc=edu";
 
 # Turn this on for inetLocalMailReceipient
 # sendmail support; add the following to 
