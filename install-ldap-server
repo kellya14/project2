@@ -7,6 +7,7 @@ if [ "$1" == "-h" ] || [ "$1" == "--help" ];
 then echo "Usage: `basename $0` [Start the LDAP Install Script by using this command: ./install-ldap-server]" ; exit 0 ; fi | tee -a ldap-install.log
 
 #Add users and passwords
+add_users () {
 useradd -c "Austin Kelly" -s /bin/bash -d /home/kellya -m kellya
 echo "CIT470" | passwd kellya --stdin
 useradd -c "Zoey Koza" -s /bin/bash -d /home/kozaz -m  kozaz
@@ -17,8 +18,10 @@ useradd -c "Kasey Cottier" -s /bin/bash -d /home/cottierk -m  cottierk
 echo "CIT470" | passwd cottierk --stdin
 useradd -c "Chris Pischl" -s /bin/bash -d /home/pischlc -m  pischlc
 echo "CIT470" | passwd pischlc --stdin
+}
 
 #Download, install, and configure LDAP
+config_ldap () {
 yum -y install openldap-servers openldap-clients
 systemctl start slapd
 systemctl enable slapd
@@ -32,8 +35,10 @@ ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif
 ldapadd -x -w CIT470 -D "cn=Manager,dc=team1,dc=nku,dc=edu" -f /root/base.ldif 
 firewall-cmd --permanent --add-service=ldap
 firewall-cmd --reload
+}
 
 #Migrate users into LDAP
+migrate_users () {
 yum -y install migrationtools
 grep "test" /etc/passwd >> /root/users
 grep "test" /etc/group >> /root/groups
@@ -52,10 +57,18 @@ cp -f /root/migrate_common.ph /usr/share/migrationtools/migrate_common.ph
 /usr/share/migrationtools/migrate_group.pl /root/groups /root/groups.ldif
 ldapadd -x -w CIT470 -D "cn=Manager,dc=team1,dc=nku,dc=edu" -f /root/users.ldif
 ldapadd -x -w CIT470 -D "cn=Manager,dc=team1,dc=nku,dc=edu" -f /root/groups.ldif
+}
 
 #Download and install diradm
+config_diradm () {
 cd /usr/local
 wget http://www.hits.at/diradm/diradm-1.3.tar.gz
 tar zxvf diradm-1.3.tar.gz
 cd /root
 mv /root/diradm.conf /etc/diradm.conf
+}
+
+add_users()
+config_ldap()
+migrate_users()
+config_diradm()
