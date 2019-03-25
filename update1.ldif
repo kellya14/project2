@@ -8,3 +8,9 @@ olcRootDN: cn=Manager,dc=team1,dc=nku,dc=edu
 -
 add: olcRootPW
 olcRootPW: {SSHA}rYQdU01VWQQpMQpvSU0gs5rMxh0eIchl
+-
+add: olcAccess
+olcAccess: {0}to attrs=userPassword, by self write by anonymous auth by * none
+-
+add: olcAccess
+olcAccess: {1} to * by self write by * read
