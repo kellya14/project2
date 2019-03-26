@@ -3,15 +3,19 @@
 #Team 1: Austin Kelly, Zoey Koza, Randy Clark, Chris Pischl, and Kasey Cottier
 #March 9th, 2019        *24 Lines of Code, excluding comments*
 #If a user requests -h or --help at command line, start small script while logging all output.
-if [ "$1" == "-h" ] || [ "$1" == "--help" ];
-then echo "Usage: `basename $0` [Start the NFS Server script by using this command: ./install-nfs-server]" ; exit 0 ; fi | tee -a nfs-install.log
+if [ "$1" == "-h" ] || [ "$1" == "--help" ]
+then
+  echo "Usage: `basename $0` [Start the NFS Server script by using this command: ./install-nfs-server]" | tee -a nfs-install.log
+else
 #BACKUP PREVIOUS ROOT HOME AND HOME DIRECTORIES
 cp -r /root /tmp/rhome; cp -r /home /tmp/althome
 #Install NFS package(s), start the required services and enable them at startup while logging all output.
 echo "Installing NFS and enabling the required services: ..." | tee -a nfs-install.log ;
 yum -y install nfs-utils >& 1 >> nfs-install.log && systemctl enable rpcbind nfs-server >& 1 >> nfs-install.log ;
 systemctl start rpcbind nfs-server >& 1 >> nfs-install.log && echo "NFS Installed and Services Enabled." | tee -a nfs-install.log ;
+
 #Create a new primary partition logging all output. Spacing on lines 16-20 is crucial for the partition to succeed.
+config_nfs () {
 echo "Creating a New Partition: ..." | tee -a nfs-install.log	
 fdisk /dev/sda <<EOF
 n
@@ -32,3 +36,7 @@ echo "Configuring firewall for NFS Ports: ..." | tee -a nfs-install.log ; firewa
 firewall-cmd --zone=public --add-port=111/tcp --permanent >& 1 >> nfs-install.log ; firewall-cmd --zone=public --add-port=20048/tcp --permanent >& 1 >> nfs-install.log ; firewall-cmd --zone=public --add-port=2049/udp --permanent >& 1 >> nfs-install.log ; firewall-cmd --zone=public --add-port=111/udp --permanent >& 1 >> nfs-install.log ; firewall-cmd --zone=public --add-port=20048/udp --permanent >& 1 >> nfs-install.log && firewall-cmd --reload >& 1 >> nfs-install.log && echo "Firewall configured for NFS!" | tee -a nfs-install.log
 #move home directories back
 cp -r /tmp/althome /home
+}
+
+config_nfs
+fi
