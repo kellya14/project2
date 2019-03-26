@@ -3,9 +3,17 @@
 
 README.md
 #General instructions for using the included scripts
+base.ldif
+#edits the base configuration file for LDAP
 client.ks.cfg
 #Kickstart file for each of our client machines
+diradm.conf
+#user management utility for LDAP
 install-ldap-server
 #Script to install LDAP onto our server machine
 install-nfs-server
 #Script to install NFS onto our server machine
+migrate_common.ph
+#edited version of the default configuration file for migration tools
+udpate1.ldif
+#edits the olcdatabase=(2)hdb.ldif file to configure LDAP
