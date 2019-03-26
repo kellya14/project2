@@ -5,8 +5,6 @@ README.md
 #General instructions for using the included scripts
 base.ldif
 #edits the base configuration file for LDAP
-client.ks.cfg
-#Kickstart file for each of our client machines
 diradm.conf
 #user management utility for LDAP
 install-ldap-server
