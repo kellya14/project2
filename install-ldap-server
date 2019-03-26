@@ -68,7 +68,7 @@ cd /root
 mv /root/diradm.conf /etc/diradm.conf
 }
 
-add_users()
-config_ldap()
-migrate_users()
-config_diradm()
+add_users
+config_ldap
+migrate_users
+config_diradm
