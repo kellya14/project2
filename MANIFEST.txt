@@ -1,5 +1,5 @@
 #Team 1 (man cit470)
-#Kasey Cottier, Austin Kelly, Randy Clark, Zoey Koza, Chris
+#Kasey Cottier, Austin Kelly, Randy Clark, Zoey Koza, Chris Pischl
 
 README.md
 #General instructions for using the included scripts
