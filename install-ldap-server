@@ -3,10 +3,10 @@
 #Team 1: Austin Kelly, Zoey Koza, Randy Clark, Kasey Cottier and Chris Pischl
 #March 17th, 2019        * Lines of Code, excluding comments*
 #If a user requests -h or --help at command line, start small script while logging all output.
-if [ "$1" == "-h" ] || [ "$1" == "--help" ];
-then echo "Usage: `basename $0` [Start the LDAP Install Script by using this command: ./install-ldap-server]" ; exit 0 ; fi | tee -a ldap-install.log
-
-
+if [ "$1" == "-h" ] || [ "$1" == "--help" ]
+then
+  echo "Usage: `basename $0` [Start the NFS Server script by using this command: ./install-nfs-server]" | tee -a nfs-install.log
+else
 #Add users and passwords
 echo "Adding users: ..." | tee -a nfs-install.log
 add_users () {
@@ -77,3 +77,4 @@ add_users
 config_ldap
 migrate_users
 config_diradm
+fi
