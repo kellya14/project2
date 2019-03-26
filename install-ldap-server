@@ -6,6 +6,7 @@
 if [ "$1" == "-h" ] || [ "$1" == "--help" ];
 then echo "Usage: `basename $0` [Start the LDAP Install Script by using this command: ./install-ldap-server]" ; exit 0 ; fi | tee -a ldap-install.log
 
+
 #Add users and passwords
 add_users () {
 useradd -c "Austin Kelly" -s /bin/bash -d /home/kellya -m kellya
@@ -32,7 +33,7 @@ ldapadd -Y EXTERNAL -H ldapi:// -f /etc/openldap/schema/core.ldif
 ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif
 ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif 
 ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif
-ldapadd -x -w CIT470 -D "cn=Manager,dc=team1,dc=nku,dc=edu" -f /root/base.ldif 
+ldapadd -x -w CIT470 -D "cn=Manager,dc=team1,dc=nku,dc=edu" -f /base.ldif 
 firewall-cmd --permanent --add-service=ldap
 firewall-cmd --reload
 }
@@ -40,23 +41,23 @@ firewall-cmd --reload
 #Migrate users into LDAP
 migrate_users () {
 yum -y install migrationtools
-grep "test" /etc/passwd >> /root/users
-grep "test" /etc/group >> /root/groups
-grep "kellya" /etc/passwd >> /root/users
-grep "kellya" /etc/group >> /root/groups
-grep "kozaz" /etc/passwd >> /root/users
-grep "kozaz" /etc/group >> /root/groups
-grep "clarkr" /etc/passwd >> /root/users
-grep "clarkr" /etc/group >> /root/groups
-grep "cottierk" /etc/passwd >> /root/users
-grep "cottierk" /etc/group >> /root/groups
-grep "pischlc" /etc/passwd >> /root/users
-grep "pischlc" /etc/group >> /root/groups
-cp -f /root/migrate_common.ph /usr/share/migrationtools/migrate_common.ph 
-/usr/share/migrationtools/migrate_passwd.pl /root/users /root/users.ldif
-/usr/share/migrationtools/migrate_group.pl /root/groups /root/groups.ldif
-ldapadd -x -w CIT470 -D "cn=Manager,dc=team1,dc=nku,dc=edu" -f /root/users.ldif
-ldapadd -x -w CIT470 -D "cn=Manager,dc=team1,dc=nku,dc=edu" -f /root/groups.ldif
+grep "test" /etc/passwd >> /users
+grep "test" /etc/group >> /groups
+grep "kellya" /etc/passwd >> /users
+grep "kellya" /etc/group >> /groups
+grep "kozaz" /etc/passwd >> /users
+grep "kozaz" /etc/group >> /groups
+grep "clarkr" /etc/passwd >> /users
+grep "clarkr" /etc/group >> /groups
+grep "cottierk" /etc/passwd >> /users
+grep "cottierk" /etc/group >> /groups
+grep "pischlc" /etc/passwd >> /users
+grep "pischlc" /etc/group >> /groups
+cp -f /migrate_common.ph /usr/share/migrationtools/migrate_common.ph 
+/usr/share/migrationtools/migrate_passwd.pl /users /users.ldif
+/usr/share/migrationtools/migrate_group.pl /groups /groups.ldif
+ldapadd -x -w CIT470 -D "cn=Manager,dc=team1,dc=nku,dc=edu" -f /users.ldif
+ldapadd -x -w CIT470 -D "cn=Manager,dc=team1,dc=nku,dc=edu" -f /groups.ldif
 }
 
 #Download and install diradm
@@ -64,8 +65,8 @@ config_diradm () {
 cd /usr/local
 wget http://www.hits.at/diradm/diradm-1.3.tar.gz
 tar zxvf diradm-1.3.tar.gz
-cd /root
-mv /root/diradm.conf /etc/diradm.conf
+cd /
+mv /diradm.conf /etc/diradm.conf
 }
 
 add_users
