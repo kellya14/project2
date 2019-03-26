@@ -5,10 +5,10 @@
 #If a user requests -h or --help at command line, start small script while logging all output.
 if [ "$1" == "-h" ] || [ "$1" == "--help" ]
 then
-  echo "Usage: `basename $0` [Start the NFS Server script by using this command: ./install-nfs-server]" | tee -a nfs-install.log
+  echo "Usage: `basename $0` [Start the LDAP Server script by using this command: ./install-ldap-server]" | tee -a ldap-install.log
 else
 #Add users and passwords
-echo "Adding users: ..." | tee -a nfs-install.log
+echo "Adding users: ..." | tee -a ldap-install.log
 add_users () {
 useradd -c "Austin Kelly" -s /bin/bash -d /home/kellya -m kellya | tee -a ldap-install.log
 echo "CIT470" | passwd kellya --stdin | tee -a ldap-install.log
@@ -23,7 +23,7 @@ echo "CIT470" | passwd pischlc --stdin | tee -a ldap-install.log
 }
 
 #Download, install, and configure LDAP
-echo "Configuring LDAP: ..." | tee -a nfs-install.log
+echo "Configuring LDAP: ..." | tee -a ldap-install.log
 config_ldap () {
 yum -y install openldap-servers openldap-clients | tee -a ldap-install.log
 systemctl start slapd
@@ -41,7 +41,7 @@ firewall-cmd --reload | tee -a ldap-install.log
 }
 
 #Migrate users into LDAP
-echo "Migrating user account info into LDAP: ..." | tee -a nfs-install.log
+echo "Migrating user account info into LDAP: ..." | tee -a ldap-install.log
 migrate_users () {
 yum -y install migrationtools | tee -a ldap-install.log
 grep "test" /etc/passwd >> /users
@@ -64,7 +64,7 @@ ldapadd -x -w CIT470 -D "cn=Manager,dc=team1,dc=nku,dc=edu" -f /groups.ldif | te
 }
 
 #Download and install diradm
-echo "Configuring diradm utility: ..." | tee -a nfs-install.log
+echo "Configuring diradm utility: ..." | tee -a ldap-install.log
 config_diradm () {
 cd /usr/local
 wget http://www.hits.at/diradm/diradm-1.3.tar.gz | tee -a ldap-install.log
